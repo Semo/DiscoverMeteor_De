@@ -3,17 +3,17 @@ title: Collections
 slug: collections
 date: 0004/01/01
 number: 4
-contents: Meteor's Kernfeature kennenlernen, Realtime Collections.|Lernen, wie Meteors Datensynchronisation funktioniert.|Lernen, wie du Collections mit deinen Templates integrierst.|Unseren einfachen Prototypen in eine funktionierende Realtime Application verwandeln!
+contents: Meteors Kernfeature kennenlernen, Realtime Collections.|Lernen, wie Meteors Datensynchronisation funktioniert.|Lernen, wie du Collections mit deinen Templates integrierst.|Unseren einfachen Prototypen in eine funktionierende Realtime Application verwandeln!
 paragraphs: 72
 ---
 
-Im ersten Kapitel haben wir über Meteor's Kernfeature gesprochen, die automatische Synchronisierung von Daten zwischen Client und Server.
+Im ersten Kapitel haben wir über Meteors Kernfeature gesprochen, die automatische Synchronisierung von Daten zwischen Client und Server.
 
 In diesem Kapitel werfen wir einen genaueren Blick darauf, wie das funktioniert und betrachten die Arbeitsweise der wichtigsten Technologie, die dies ermöglicht, der Meteor **Collection**.
 
 Eine Collection ist eine spezielle Datenstruktur, die sich um das Speichern von Daten in der permanenten, serverseitigen MongoDB Datenbank, sowie deren Synchronisation mit dem Browser jedes verbundenen Users in Echtzeit kümmert.
 
-Wir wollen, dass unsere Posts dauerhaft gepsichert sind und zwischen Usern geteilt werden, also beginnen wir damit eine Collection namens `Posts` zu erstellen um sie dort zu speichern.
+Wir wollen, dass unsere Posts dauerhaft gesichert und zwischen Usern geteilt werden, also beginnen wir damit eine Collection namens `Posts` zu erstellen um sie dort zu speichern.
 
 Collections sind ein zentraler Bestandteil jeder App, um also sicherzustellen, dass sie immer zu Beginn definiert werden, erstellen wir sie in der lib directory. Sofern noch nicht geschehen, erstelle im Ordner `lib` einen Unterordner `collections/` und darin eine Datei posts.js. Dann füge dieser Datei folgende Zeile hinzu:
 
@@ -103,7 +103,7 @@ Beachte, dass man in keinem Fall als Teil eines Befehls das Prompt Zeichen (`$`,
 
 Kommen wir nun zurück zum Server, wo sich die Collection wie eine API in die Mongo Datenbank verhält. Im serverseitigen code, ermöglicht uns das, Mongo Befehle wie `Posts.insert()` oder `Posts.update()` zu schreiben, die dann Änderungen an der `posts` Collection in Mongo bewirken.
 
-Um einen Blick in die Mongo Datenbank zu werfen, öffne ein zweites Terminal Fenster (während `meteor` noch im ersten Fenster läuft) und begib dich in das Verzeichnis deiner App. Führe dann den Befehl `meteor mongo` aus um eine Mongo shell zu starten in der man standard Mongo Befehle ausführen (und wie gewohnt mit `strg+c` beenden) kann. Lass uns z.B. einen neuen Post einfügen:
+Um einen Blick in die Mongo Datenbank zu werfen, öffne ein zweites Terminal Fenster (während `meteor` noch im ersten Fenster läuft) und wechsle in das Verzeichnis deiner App. Führe dann den Befehl `meteor mongo` aus um eine Mongo shell zu starten in der man standard Mongo Befehle ausführen (und wie gewohnt mit `strg+c` beenden) kann. Lass uns z.B. einen neuen Post einfügen:
 
 ~~~bash
 > db.posts.insert({title: "A new post"});
@@ -286,7 +286,7 @@ In Meteor gibt `find()`einen Cursor zurück, was eine [reaktive Datenquelle](htt
 Innerhalb einer App ist Meteor intelligent genug zu wissen wie man über einen Cursor iteriert ohne dass man jedes mal explizit eine Umwandlung in ein Array vornehmen muss. Das ist der Grund warum man `fetch` nur selten im Meteor Code findet (und warum wir es im Beispiel oben nicht benutzt haben).
 <% end %>
 
-Anstatt eine Liste von Posts als ein statisches Array aus einer variable zu laden, geben wir nun einen Cursor an unseren Helper `posts` zurück (obwohl alles sehr ähnlich aussehen wird, da wir immernoch die gleichen Daten nutzen):
+Anstatt eine Liste von Posts als ein statisches Array aus einer Variable zu laden, geben wir nun einen Cursor an unseren Helper `posts` zurück (obwohl alles sehr ähnlich aussehen wird, da wir immernoch die gleichen Daten nutzen):
 
 ////
 
@@ -309,7 +309,7 @@ Zurück im Browser sollte das nun etwa so aussehen:
 
 <%= screenshot "4-4", "Posts über die Konsole hinzufügen" %>
 
-Du hast gerade zum ersten mal die Reaktivität in Aktion gesehen. Da wir Spacebars befohlen haben über den Cursor `Posts.find()` zu iterieren, hat es gewusst wie der Cursor auf Veränderungen überwacht werden muss und wie das HTML möglichst einfach anzupassen ist um die korrekten Daten darzustellen.
+Du hast gerade zum ersten Mal die Reaktivität in Aktion gesehen. Da wir Spacebars befohlen haben über den Cursor `Posts.find()` zu iterieren, hat es gewusst wie der Cursor auf Veränderungen überwacht werden muss und wie das HTML möglichst einfach anzupassen ist um die korrekten Daten darzustellen.
 
 <% note do %>
 
